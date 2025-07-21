@@ -105,53 +105,46 @@ const About = () => {
               maxWidth: "800px",
             }}
           >
-            <Grid container spacing={20}>  {/* Increased spacing between columns */}
-              {/* Column 1 */}
-              <Grid item xs={12} sm={6}>
-                <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
-                  <Person color="primary" sx={{ mr: 2, flexShrink: 0 }} />
-                  <Box>
-                    <Typography variant="body2" color="text.secondary">
-                      Name
-                    </Typography>
-                    <Typography variant="body1">Nikhil Jagtap</Typography>
-                  </Box>
-                </Box>
+            <Grid container spacing={{ xs: 4, sm: 10 }}>
+  {/* Column 1 */}
+  <Grid item xs={12} sm={6}>
+    <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+      <Person color="primary" sx={{ mr: 2, flexShrink: 0 }} />
+      <Box>
+        <Typography variant="body2" color="text.secondary">Name</Typography>
+        <Typography variant="body1">Nikhil Jagtap</Typography>
+      </Box>
+    </Box>
 
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Email color="primary" sx={{ mr: 2, flexShrink: 0 }} />
-                  <Box>
-                    <Typography variant="body2" color="text.secondary">
-                      Email
-                    </Typography>
-                    <Typography variant="body1">jagtapnikhil1806@gmail.com</Typography>
-                  </Box>
-                </Box>
-              </Grid>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Email color="primary" sx={{ mr: 2, flexShrink: 0 }} />
+      <Box>
+        <Typography variant="body2" color="text.secondary">Email</Typography>
+        <Typography variant="body1">jagtapnikhil1806@gmail.com</Typography>
+      </Box>
+    </Box>
+  </Grid>
 
-              {/* Column 2 */}
-              <Grid item xs={12} sm={6}>
-                <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
-                  <School color="primary" sx={{ mr: 2, flexShrink: 0 }} />
-                  <Box>
-                    <Typography variant="body2" color="text.secondary">
-                      Degree
-                    </Typography>
-                    <Typography variant="body1">B.E.,Computer Science</Typography>
-                  </Box>
-                </Box>
+  {/* Column 2 */}
+  <Grid item xs={12} sm={6}>
+    <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+      <School color="primary" sx={{ mr: 2, flexShrink: 0 }} />
+      <Box>
+        <Typography variant="body2" color="text.secondary">Degree</Typography>
+        <Typography variant="body1">B.E., Computer Science</Typography>
+      </Box>
+    </Box>
 
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <LocationOn color="primary" sx={{ mr: 2, flexShrink: 0 }} />
-                  <Box>
-                    <Typography variant="body2" color="text.secondary">
-                      Location
-                    </Typography>
-                    <Typography variant="body1">Pune, India</Typography>
-                  </Box>
-                </Box>
-              </Grid>
-            </Grid>
+    <Box sx={{ display: "flex", alignItems: "center" }}>
+      <LocationOn color="primary" sx={{ mr: 2, flexShrink: 0 }} />
+      <Box>
+        <Typography variant="body2" color="text.secondary">Location</Typography>
+        <Typography variant="body1">Pune, India</Typography>
+      </Box>
+    </Box>
+  </Grid>
+</Grid>
+
           </Box>
         </motion.div>
 

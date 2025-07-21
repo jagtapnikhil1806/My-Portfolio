@@ -8,7 +8,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { LinkedIn, GitHub, Email, ArrowDownward } from "@mui/icons-material";
+import { LinkedIn, GitHub, ArrowDownward } from "@mui/icons-material";
 
 const Hero = () => {
   const theme = useTheme();
@@ -20,7 +20,6 @@ const Hero = () => {
     "Web Developer",
   ];
 
-  // Typing animation state
   const [displayedRole, setDisplayedRole] = useState("");
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
@@ -34,18 +33,18 @@ const Hero = () => {
       if (isDeleting) {
         setDisplayedRole(currentRole.substring(0, currentCharIndex - 1));
         setCurrentCharIndex(currentCharIndex - 1);
-        setTypingSpeed(75); // Faster when deleting
+        setTypingSpeed(75);
       } else {
         setDisplayedRole(currentRole.substring(0, currentCharIndex + 1));
         setCurrentCharIndex(currentCharIndex + 1);
-        setTypingSpeed(150); // Normal typing speed
+        setTypingSpeed(150);
       }
 
       if (!isDeleting && currentCharIndex === currentRole.length) {
-        setTimeout(() => setIsDeleting(true), 2000); // Pause at end of word
+        setTimeout(() => setIsDeleting(true), 2000);
       } else if (isDeleting && currentCharIndex === 0) {
         setIsDeleting(false);
-        setCurrentRoleIndex((currentRoleIndex + 1) % roles.length); // Move to next role
+        setCurrentRoleIndex((currentRoleIndex + 1) % roles.length);
       }
     };
 
@@ -53,23 +52,20 @@ const Hero = () => {
     return () => clearTimeout(timer);
   }, [currentCharIndex, currentRoleIndex, isDeleting, typingSpeed]);
 
-  // Generate random stars with different properties
   const generateStars = () => {
     return [...Array(20)].map((_, i) => {
       const size = Math.random() * 2 + 1;
       const duration = Math.random() * 10 + 10;
       const delay = Math.random() * 5;
       const startX = Math.random() * 100;
-      const startY = Math.random() * 100;
       const distance = 50 + Math.random() * 100;
-      
+
       return {
         key: i,
         size,
         duration,
         delay,
         startX,
-        startY,
         distance,
       };
     });
@@ -82,6 +78,7 @@ const Hero = () => {
       id="home"
       sx={{
         minHeight: "100vh",
+        pt: { xs: "80px", md: 0 }, // Added to avoid header overlap
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -94,7 +91,7 @@ const Hero = () => {
             : "radial-gradient(circle at center, #e0f7fa 0%, #b2ebf2 70%, #80deea 100%)",
       }}
     >
-      {/* Falling stars background */}
+      {/* Animated Stars */}
       <Box
         sx={{
           position: "absolute",
@@ -123,7 +120,6 @@ const Hero = () => {
             }}
             animate={{
               y: [`-10px`, `${star.distance}px`],
-              x: [`${star.startX}%`, `${star.startX + (Math.random() * 10 - 5)}%`],
               opacity: [0, 0.8, 0],
             }}
             transition={{
@@ -156,6 +152,7 @@ const Hero = () => {
             maxWidth: { xs: "100%", md: "700px" },
             textAlign: { xs: "center", md: "left" },
             mt: { xs: 4, md: 0 },
+            pb: { xs: 6, md: 0 }, // Added bottom padding for mobile
           }}
         >
           <motion.div
@@ -163,67 +160,38 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Name with wave animation */}
+            <Typography variant="h1" sx={{ fontSize: { xs: "2.5rem", md: "4.5rem" }, fontWeight: 700 }}>
+              Hi, I'm
+            </Typography>
+
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              style={{ display: "inline-block" }}
               animate={{
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.8,
-                  delay: 0.3,
-                },
+                textShadow: [
+                  `0 0 0px ${theme.palette.primary.main}`,
+                  `0 0 10px ${theme.palette.primary.main}`,
+                  `0 0 20px ${theme.palette.primary.main}`,
+                  `0 0 10px ${theme.palette.primary.main}`,
+                  `0 0 0px ${theme.palette.primary.main}`,
+                ],
+                scale: [1, 1.05, 1],
               }}
+              transition={{ duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
             >
               <Typography
                 variant="h1"
-                component="h1"
                 sx={{
-                  fontSize: { xs: "2.5rem", sm: "3.5rem", md: "4.5rem" },
-                  fontWeight: 700,
-                  lineHeight: 1.1,
-                  mb: 0.5,
+                  fontSize: { xs: "3rem", sm: "4.5rem", md: "5.5rem" },
+                  fontWeight: 800,
+                  color: theme.palette.primary.main,
+                  mb: 2,
                 }}
               >
-                Hi, I'm
+                Jagtap Nikhil
               </Typography>
-
-              <motion.div
-                style={{ display: "inline-block" }}
-                animate={{
-                  textShadow: [
-                    `0 0 0px ${theme.palette.primary.main}`,
-                    `0 0 10px ${theme.palette.primary.main}`,
-                    `0 0 20px ${theme.palette.primary.main}`,
-                    `0 0 10px ${theme.palette.primary.main}`,
-                    `0 0 0px ${theme.palette.primary.main}`,
-                  ],
-                  scale: [1, 1.05, 1, 1.03, 1],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut",
-                }}
-              >
-                <Typography
-                  variant="h1"
-                  component="h1"
-                  sx={{
-                    fontSize: { xs: "3rem", sm: "4.5rem", md: "5.5rem" },
-                    fontWeight: 800,
-                    lineHeight: 1,
-                    color: theme.palette.primary.main,
-                    mb: 2,
-                  }}
-                >
-                  Jagtap Nikhil
-                </Typography>
-              </motion.div>
             </motion.div>
 
-            {/* Continuous typing animation for role */}
+            {/* Typing Role */}
             <Box
               sx={{
                 minHeight: "3rem",
@@ -235,7 +203,6 @@ const Hero = () => {
             >
               <Typography
                 variant="h2"
-                component="h2"
                 sx={{
                   fontSize: { xs: "1.5rem", md: "2.25rem" },
                   fontWeight: 400,
@@ -256,26 +223,11 @@ const Hero = () => {
               </Typography>
             </Box>
 
-            <Typography
-              variant="body1"
-              paragraph
-              sx={{
-                mb: 4,
-                fontSize: "1.15rem",
-                lineHeight: 1.7,
-              }}
-            >
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                Full-stack developer building seamless web applications from
-                frontend to backend. I craft pixel-perfect UIs with React and
-                scalable APIs with Node.js, ensuring optimal performance across
-                the stack. Passionate about solving problems through clean code
-                and intuitive user experiences.
-              </motion.span>
+            <Typography variant="body1" sx={{ mb: 4, fontSize: "1.15rem", lineHeight: 1.7 }}>
+              Full-stack developer building seamless web applications from
+              frontend to backend. I craft pixel-perfect UIs with React and
+              scalable APIs with Node.js, ensuring optimal performance across
+              the stack.
             </Typography>
 
             <Box
@@ -287,47 +239,15 @@ const Hero = () => {
                 flexWrap: "wrap",
               }}
             >
-              <Button
-                variant="contained"
-                size="large"
-                href="#projects"
-                component={motion.a}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: `0 5px 15px ${theme.palette.primary.main}`,
-                }}
-                whileTap={{ scale: 0.95 }}
-                sx={{
-                  px: 4,
-                  py: 1.5,
-                  borderRadius: "50px",
-                  fontSize: "1.1rem",
-                }}
-              >
+              <Button variant="contained" size="large" href="#projects">
                 View My Work
               </Button>
-              <Button
-                variant="outlined"
-                size="large"
-                href="#contact"
-                component={motion.a}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: `0 5px 15px ${theme.palette.secondary.main}`,
-                }}
-                whileTap={{ scale: 0.95 }}
-                sx={{
-                  px: 4,
-                  py: 1.5,
-                  borderRadius: "50px",
-                  fontSize: "1.1rem",
-                  borderWidth: "2px",
-                }}
-              >
+              <Button variant="outlined" size="large" href="#contact">
                 Contact Me
               </Button>
             </Box>
 
+            {/* Social Buttons */}
             <Box
               sx={{
                 display: "flex",
@@ -376,29 +296,16 @@ const Hero = () => {
           </motion.div>
         </Box>
 
-        {/* Profile Picture - Responsive sizing */}
+        {/* Profile Picture */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{
-            opacity: 1,
-            scale: 1,
-            y: [0, -15, 0],
-          }}
+          animate={{ opacity: 1, scale: 1, y: [0, -15, 0] }}
           transition={{
-            y: {
-              duration: 4,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-            },
+            y: { duration: 4, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" },
             opacity: { duration: 0.8, delay: 0.2 },
             scale: { duration: 0.8, delay: 0.2 },
           }}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-          }}
+          style={{ display: "flex", justifyContent: "center", width: "100%" }}
         >
           <Avatar
             alt="Profile Photo"
@@ -419,24 +326,17 @@ const Hero = () => {
         </motion.div>
       </Box>
 
-      {/* Scroll indicator */}
-      <motion.div
+      {/* Scroll Down - hidden on mobile */}
+      {/* <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{
-          opacity: [0, 1, 0],
-          y: [0, 10, 0],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 2,
-          delay: 1.5,
-        }}
-        style={{
+        animate={{ opacity: [0, 1, 0], y: [0, 10, 0] }}
+        transition={{ repeat: Infinity, duration: 2, delay: 1.5 }}
+        sx={{
+          display: { xs: "none", md: "flex" },
           position: "absolute",
           bottom: "40px",
           left: "50%",
           transform: "translateX(-50%)",
-          display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
@@ -445,7 +345,30 @@ const Hero = () => {
           Scroll Down
         </Typography>
         <ArrowDownward />
-      </motion.div>
+      </motion.div> */}
+      <Box
+  sx={{
+    display: { xs: "none", md: "flex" },
+    position: "absolute",
+    bottom: "40px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    flexDirection: "column",
+    alignItems: "center",
+  }}
+>
+  <motion.div
+    animate={{ y: [0, 10, 0] }}
+    transition={{ repeat: Infinity, duration: 2 }}
+    style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+  >
+    <Typography variant="caption" sx={{ mb: 1 }}>
+      Scroll Down
+    </Typography>
+    <ArrowDownward />
+  </motion.div>
+</Box>
+
     </Box>
   );
 };

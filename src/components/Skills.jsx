@@ -36,7 +36,7 @@ const skillCategories = [
     ]
   },
   {
-    name: 'DevOps & Cloud',
+    name: 'DevOps ',
     skills: [
       { name: 'Docker', icon: '/skills/docker.png' },
       

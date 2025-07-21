@@ -444,64 +444,95 @@ const Projects = () => {
                     </Box>
                   </CardContent>
                   
-                  <Box sx={{ 
-                    p: 2,
-                    display: 'flex', 
-                    justifyContent: 'space-between',
-                    background: theme.palette.mode === 'dark'
-                      ? 'rgba(255, 255, 255, 0.03)'
-                      : 'rgba(0, 0, 0, 0.02)',
-                    borderTop: `1px solid ${theme.palette.divider}`
-                  }}>
-                    <Button
-                      variant="contained"
-                      size="medium"
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      endIcon={<OpenInNew />}
-                      component={motion.a}
-                      whileHover={{ 
-                        scale: 1.03,
-                        boxShadow: `0 4px 16px ${theme.palette.primary.main}`
-                      }}
-                      sx={{
-                        borderRadius: '8px',
-                        px: 3,
-                        py: 1,
-                        fontWeight: 600,
-                        textTransform: 'none',
-                        boxShadow: `0 2px 8px ${theme.palette.primary.main}`
-                      }}
-                    >
-                      Live Demo
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      size="medium"
-                      href={project.codeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      endIcon={<GitHub />}
-                      component={motion.a}
-                      whileHover={{ 
-                        scale: 1.03,
-                        background: theme.palette.mode === 'dark'
-                          ? 'rgba(255, 255, 255, 0.1)'
-                          : 'rgba(0, 0, 0, 0.05)',
-                      }}
-                      sx={{
-                        borderRadius: '8px',
-                        px: 3,
-                        py: 1,
-                        fontWeight: 600,
-                        textTransform: 'none',
-                        borderWidth: '2px',
-                      }}
-                    >
-                      View Code
-                    </Button>
-                  </Box>
+                  <Box
+  sx={{
+    p: 2,
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 1,
+    justifyContent: 'space-between',
+    background: theme.palette.mode === 'dark'
+      ? 'rgba(255, 255, 255, 0.03)'
+      : 'rgba(0, 0, 0, 0.02)',
+    borderTop: `1px solid ${theme.palette.divider}`,
+    flexWrap: 'nowrap',
+  }}
+>
+  <Button
+    variant="contained"
+    href={project.demoUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    endIcon={<OpenInNew />}
+    component={motion.a}
+    whileHover={{
+      scale: 1.03,
+      boxShadow: `0 4px 16px ${theme.palette.primary.main}`,
+    }}
+    sx={{
+      flexGrow: 1,
+      flexBasis: 0,
+      borderRadius: '8px',
+      px: 1,
+      py: 1,
+      fontWeight: 600,
+      textTransform: 'none',
+      fontSize: { xs: '0.75rem', sm: '0.85rem', md: '1rem' },
+      boxShadow: `0 2px 8px ${theme.palette.primary.main}`,
+      minWidth: 0, // allow shrinking
+    }}
+  >
+    <Typography
+      sx={{ display: { xs: 'none', sm: 'inline' } }}
+    >
+      Live Demo
+    </Typography>
+    <Typography
+      sx={{ display: { xs: 'inline', sm: 'none' } }}
+    >
+      Demo
+    </Typography>
+  </Button>
+
+  <Button
+    variant="outlined"
+    href={project.codeUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    endIcon={<GitHub />}
+    component={motion.a}
+    whileHover={{
+      scale: 1.03,
+      background: theme.palette.mode === 'dark'
+        ? 'rgba(255, 255, 255, 0.1)'
+        : 'rgba(0, 0, 0, 0.05)',
+    }}
+    sx={{
+      flexGrow: 1,
+      flexBasis: 0,
+      borderRadius: '8px',
+      px: 1,
+      py: 1,
+      fontWeight: 600,
+      textTransform: 'none',
+      fontSize: { xs: '0.75rem', sm: '0.85rem', md: '1rem' },
+      minWidth: 0,
+      borderWidth: '2px',
+    }}
+  >
+    <Typography
+      sx={{ display: { xs: 'none', sm: 'inline' } }}
+    >
+      View Code
+    </Typography>
+    <Typography
+      sx={{ display: { xs: 'inline', sm: 'none' } }}
+    >
+      Code
+    </Typography>
+  </Button>
+</Box>
+
                 </Card>
               </motion.div>
             </Box>
